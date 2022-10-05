@@ -3,12 +3,12 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import {
-  BellIcon,
+  
   MenuIcon,
   XIcon,
-  PencilAltIcon,
+  BookOpenIcon,
 } from "@heroicons/react/outline";
-import { PlusIcon, LogoutIcon } from "@heroicons/react/solid";
+import { PlusIcon, LogoutIcon, PencilAltIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../../../redux/slices/users/usersSlices";
 
@@ -16,7 +16,7 @@ const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Create", href: "/create-post", current: false },
   { name: "Blogs", href: "/posts", current: false },
-  { name: "Authors", href: "/users", current: false },
+  { name: "Profile", href: "/users", current: false },
 ];
 
 function classNames(...classes) {
@@ -54,7 +54,7 @@ const PrivateNavbar = ({ isLogin }) => {
                   <PencilAltIcon className="h-16 w-16 text-yellow-200" />
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                  {navigation.map(item => (
+                  {navigation.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
@@ -93,7 +93,7 @@ const PrivateNavbar = ({ isLogin }) => {
                       className="-ml-1 mr-2 h-5 w-5"
                       aria-hidden="true"
                     />
-                    <span>Logout..</span>
+                    <span>Logout</span>
                   </button>
                 </div>
                 <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
@@ -125,7 +125,7 @@ const PrivateNavbar = ({ isLogin }) => {
                             static
                             className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
-                            {userNavigation.map(item => (
+                            {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <a
@@ -152,7 +152,7 @@ const PrivateNavbar = ({ isLogin }) => {
 
           <Disclosure.Panel className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navigation.map(item => (
+              {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -174,25 +174,21 @@ const PrivateNavbar = ({ isLogin }) => {
                 <div className="flex-shrink-0">
                   <img
                     className="h-10 w-10 rounded-full"
-                    // src={isLogin.profilePhoto}
+                    src={isLogin?.profilePhoto}
                     alt=""
                   />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-white">
-                    {/* {user.name} */}
+                    {isLogin?.firstName} {isLogin?.lastName}
                   </div>
                   <div className="text-sm font-medium text-gray-400">
-                    {/* {user.email} */}
+                    {isLogin?.email}
                   </div>
                 </div>
-                <button className="ml-auto flex-shrink-0 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
               </div>
               <div className="mt-3 px-2 space-y-1 sm:px-3">
-                {userNavigation.map(item => (
+                {userNavigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}

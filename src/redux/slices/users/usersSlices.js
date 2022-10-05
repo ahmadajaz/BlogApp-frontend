@@ -413,7 +413,7 @@ const usersSlices = createSlice({
   initialState: {
     userAuth: userLoginFromStorage,
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     //register
     builder.addCase(registerUserAction.pending, (state, action) => {
       state.loading = true;

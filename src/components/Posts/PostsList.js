@@ -55,7 +55,7 @@ export default function PostsList() {
                   onClick={() => dispatch(fetchPostsAction(""))}
                   className="inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-green-600 hover:bg-green-700 text-gray-50 font-bold leading-loose transition duration-200"
                 >
-                  View All Posts
+                  View All Blogs
                 </button>
               </div>
             </div>

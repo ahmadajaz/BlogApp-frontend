@@ -189,7 +189,7 @@ export const toggleAddDisLikesToPost = createAsyncThunk(
 const postSlice = createSlice({
   name: "post",
   initialState: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     //create post
     builder.addCase(createpostAction.pending, (state, action) => {
       state.loading = true;
@@ -203,6 +203,11 @@ const postSlice = createSlice({
       state.isCreated = false;
       state.appErr = undefined;
       state.serverErr = undefined;
+    });
+    builder.addCase(createpostAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
     });
 
     //Update post
